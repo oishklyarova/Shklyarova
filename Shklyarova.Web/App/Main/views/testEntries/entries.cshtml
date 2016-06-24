@@ -1,0 +1,30 @@
+﻿<div class="container" ng-controller="testEntriesController">
+    <form class="form-horizontal" name="entryForm" ng-submit="saveEntry()" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : entryForm.someText.$error.required && !entryForm.someText.$pristine }">
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="someText" name="title" placeholder="Enter some text"
+                       ng-model="newTestEntry.SomeText" required>
+                <span ng-show="entryForm.someText.$error.required && !entryForm.someText.$pristine" class="help-block">You should enter at least one symbol.</span>
+                <button type="submit" class="btn btn-primary" ng-disabled="entryForm.$invalid">Save</button>
+            </div>
+        </div>
+    </form>
+    {{message}}
+    <div class="panel panel-default">
+        <div class="panel-heading" style="position: relative;">
+            <div class="row">
+                <!-- Title -->
+                <h3 class="panel-title col-xs-6">
+                    <p>Test Entries</p>
+                </h3>
+            </div>
+        </div>
+
+        <ul ng-repeat="testEntry in testEntries">
+            <li>
+                <p>{{testEntry.someText}}</p>
+                <p>{{testEntry.dtEntry | date:'medium'}}</p>
+            </li>
+        </ul>
+    </div>
+</div>
